@@ -236,10 +236,10 @@ export default {
       this.year--;
     },
     handleDayClick(day) {
-      const chosenDateData = `${new Date(day.date).getDate()}/${this.month}/${
+      const chosenDateText = `${new Date(day.date).getDate()}/${this.month}/${
         this.year
       }`;
-      this.$emit("clickedDate", chosenDateData);
+      this.$emit("clickedDate", chosenDateText);
       this.$emit("chosenDay", day);
       this.$forceUpdate();
     }

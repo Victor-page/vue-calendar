@@ -9,7 +9,7 @@
     <modal title="Create note" v-show="modal" @close="modal = false">
       <div slot="body">
         <form @submit.prevent="submitForm">
-          <p class="chosenDate">Date: {{ event }}</p>
+          <p class="chosenDate">Date: {{ chosenDateText }}</p>
           <textarea
             name="note"
             id="note"
@@ -35,7 +35,7 @@ export default {
     return {
       modal: false,
       input: "",
-      event,
+      chosenDateText: "",
       chosenDay: ""
     };
   },
@@ -46,12 +46,12 @@ export default {
   methods: {
     callModal($event) {
       this.modal = !this.modal;
-      this.event = $event;
+      this.chosenDateText = $event;
       this.input = "";
     },
     submitForm() {
-      this.modal = false;
       this.chosenDay.notes.push(this.input);
+      this.modal = false;
     },
     saveChosenDay($event) {
       this.chosenDay = $event;
