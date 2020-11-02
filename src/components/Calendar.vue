@@ -39,10 +39,10 @@
         @click="handleDayClick(day)"
       >
         <span>{{ day.day }}</span>
+
         <ol>
-          <li v-for="note in day.notes">
-            <p>{{ note }}</p>
-          </li>
+          <note v-for="(note, index) in day.notes" :key="index" :note="note">
+          </note>
         </ol>
       </div>
     </div>
@@ -50,6 +50,7 @@
 </template>
 
 <script>
+import Note from "./Note.vue";
 // Calendar data
 const _daysInMonths = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
 const _weekdayLabels = [
@@ -88,6 +89,9 @@ export default {
       month: _todayComps.month,
       year: _todayComps.year
     };
+  },
+  components: {
+    Note
   },
   computed: {
     monthIndex() {
@@ -322,18 +326,8 @@ export default {
 }
 
 .day span {
-  display: block;
   align-self: flex-end;
   color: #3a3a3a;
-}
-
-.day li {
-  margin-bottom: 4px;
-}
-
-.day p {
-  margin: 0;
-  word-wrap: break-word;
 }
 
 .today {
